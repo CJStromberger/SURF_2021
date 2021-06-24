@@ -47,12 +47,66 @@ space key : force stop
 CTRL-C to quit
 """
 
+""" class GoForward():
+    def __init__(self):
+        # initiliaze
+        rospy.init_node('GoForward', anonymous=False)
+
+	    # tell user how to stop TurtleBot
+        rospy.loginfo("To stop TurtleBot CTRL + C")
+
+        # What function to call when you ctrl + c    
+        rospy.on_shutdown(self.shutdown)
+        
+	    # Create a publisher which can "talk" to TurtleBot and tell it to move
+        # Tip: You may need to change cmd_vel_mux/input/navi to /cmd_vel if you're not using TurtleBot2
+        self.cmd_vel = rospy.Publisher('cmd_vel_mux/input/navi', Twist, queue_size=10)
+     
+	    #TurtleBot will stop if we don't keep telling it to move.  How often should we tell it to move? 10 HZ
+        r = rospy.Rate(10);
+        # Twist is a datatype for velocity
+        move_cmd = Twist()
+	    # let's go forward at 0.2 m/s
+        move_cmd.linear.x = 0.2
+	    # let's turn at 0 radians/s
+        move_cmd.angular.z = 0
+
+	    # as long as you haven't ctrl + c keeping doing...
+        while not rospy.is_shutdown():
+	        # publish the velocity
+            self.cmd_vel.publish(move_cmd)
+	        # wait for 0.1 seconds (10 HZ) and publish again
+            r.sleep()
+                        
+        
+    def shutdown(self):
+        # stop turtlebot
+        rospy.loginfo("Stop TurtleBot")
+	    # a default Twist has linear.x of 0 and angular.z of 0.  So it'll stop TurtleBot
+        self.cmd_vel.publish(Twist())
+	    # sleep just makes sure TurtleBot receives the stop command prior to shutting down the script
+        rospy.sleep(1)
+ 
+if __name__ == '__main__':
+    try:
+        GoForward()
+    except:
+        rospy.loginfo("GoForward node terminated.") """
+
 moveBindings = {
         'i':(1,0),
         'k':(-1,0),
         'w':(0,1),
         's':(0,-1),
 }
+speedBindings={
+        'q':(1.1,1.1),
+        'z':(.9,.9),
+        'w':(1.1,1),
+        'x':(.9,1),
+        'e':(1,1.1),
+        'c':(1,.9),
+          }
 
 
 def getKey():
@@ -75,7 +129,7 @@ def vels(speed,turn):
 if __name__=="__main__":
     settings = termios.tcgetattr(sys.stdin)
     
-    rospy.init_node('turtlebot_diffdrive')
+    rospy.init_node('turtlebot_teleop')
     pub = rospy.Publisher('~cmd_vel', Twist, queue_size=5)
 
     x = 0
@@ -92,11 +146,21 @@ if __name__=="__main__":
         print(vels(speed,turn))
         while(1):
             key = getKey()
+            print(key)
             if key in moveBindings.keys():
                 x = moveBindings[key][0]
                 th = moveBindings[key][1]
                 count = 0
-            elif key == ' ':
+            elif key in speedBindings.keys():
+                speed = speed * speedBindings[key][0]
+                turn = turn * speedBindings[key][1]
+                count = 0
+
+                print(vels(speed,turn))
+                if (status == 14):
+                    print(msg)
+                status = (status + 1) % 15
+            elif key == ' ' or key == 'k' :
                 x = 0
                 th = 0
                 control_speed = 0
@@ -145,6 +209,7 @@ if __name__=="__main__":
         pub.publish(twist)
 
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)
+
 
 
 
