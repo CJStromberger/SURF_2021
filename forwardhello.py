@@ -37,15 +37,14 @@ class GoForward():
 	    # as long as you haven't ctrl + c keeping doing...
         while not rospy.is_shutdown():
             for i in range(10):
-                speeds = self.fixwheelspeed(0.7, 0.7)
+                speeds = self.fixwheelspeed(0.5, i/10.0)
                 move_cmd.linear.x = speeds[0]
-                move_cmd.angular.z = 1
+                move_cmd.angular.z = speeds[1]
 	            # publish the velocity
                 self.cmd_vel.publish(move_cmd)
 	            # wait for 0.1 seconds (10 HZ) and publish again
-                r.sleep()
+                r.sleep(5)
                         
-        
     def shutdown(self):
         # stop turtlebot
         rospy.loginfo("Stop TurtleBot")
@@ -56,10 +55,13 @@ class GoForward():
     
     # Takes a desired velocity of the left wheel and right wheel and returns a (linear velocity, rortational velocity) tuple
     def fixwheelspeed(self, vleft, vright):
-        radius = (vleft + vright)*BASE/2
-        omega = (vleft + vright)/(radius*2)
-        velocity  = radius*omega
-        return(velocity, omega)
+        if vleft == vright:
+            return(vleft, 1)
+        else:
+            radius = (vleft + vright)*BASE/2
+            omega = (vleft + vright)/(radius*2)
+            velocity  = radius*omega
+            return(velocity, omega)
  
 if __name__ == '__main__':
     try:
