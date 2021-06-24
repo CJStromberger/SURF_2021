@@ -146,7 +146,7 @@ if __name__=="__main__":
         print(vels(speed,turn))
         while(1):
             key = getKey()
-            print(moveBindings[key][0] + moveBindings[key][1])
+            print(moveBindings[key][0])
             if key in moveBindings.keys():
                 x = moveBindings[key][0]
                 th = moveBindings[key][1]
