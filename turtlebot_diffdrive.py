@@ -146,10 +146,11 @@ if __name__=="__main__":
         print(vels(speed,turn))
         while(1):
             key = getKey()
-            print(moveBindings[key][0])
             if key in moveBindings.keys():
                 x = moveBindings[key][0]
+		print(x)
                 th = moveBindings[key][1]
+		print(th)
                 count = 0
             elif key in speedBindings.keys():
                 speed = speed * speedBindings[key][0]
