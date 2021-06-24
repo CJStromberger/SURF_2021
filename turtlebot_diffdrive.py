@@ -44,6 +44,8 @@ i : increase speed of right wheel
 k : decrease seppd of right wheel
 space key : force stop
 
+Testing
+
 CTRL-C to quit
 """
 
