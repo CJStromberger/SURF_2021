@@ -39,7 +39,7 @@ class GoForward():
             for i in range(10):
                 speeds = self.fixwheelspeed(0.7, 0.7)
                 move_cmd.linear.x = speeds[0]
-                move_cmd.angular.z = speeds[1]
+                move_cmd.angular.z = 1
 	            # publish the velocity
                 self.cmd_vel.publish(move_cmd)
 	            # wait for 0.1 seconds (10 HZ) and publish again
