@@ -41,10 +41,8 @@ Differential drive controls for turtlebot
 w : increase speed of left wheel
 s : decrease speed of left wheel
 i : increase speed of right wheel
-k : decrease seppd of right wheel
+k : decrease speed of right wheel
 space key : force stop
-
-Testing
 
 CTRL-C to quit
 """
@@ -148,7 +146,7 @@ if __name__=="__main__":
         print(vels(speed,turn))
         while(1):
             key = getKey()
-            #print(moveBindings[key][0],moveBindings[key][1])
+            print(moveBindings[key][0] + moveBindings[key][1])
             if key in moveBindings.keys():
                 x = moveBindings[key][0]
                 th = moveBindings[key][1]
