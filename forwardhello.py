@@ -26,7 +26,7 @@ class GoForward():
         self.cmd_vel = rospy.Publisher('cmd_vel_mux/input/navi', Twist, queue_size=10)
      
 	    #TurtleBot will stop if we don't keep telling it to move.  How often should we tell it to move? 10 HZ
-        r = rospy.Rate(0.2);
+        r = rospy.Rate(10);
         # Twist is a datatype for velocity
         move_cmd = Twist()
 	    # let's go forward at 0.2 m/s
@@ -43,7 +43,7 @@ class GoForward():
 	            # publish the velocity
                 self.cmd_vel.publish(move_cmd)
 	            # wait for 0.1 seconds (10 HZ) and publish again
-                r.sleep(5)
+                r.sleep()
                         
     def shutdown(self):
         # stop turtlebot
