@@ -92,6 +92,12 @@ if __name__ == '__main__':
         GoForward()
     except:
         rospy.loginfo("GoForward node terminated.") """
+# Takes a desired velocity of the left wheel and right wheel and returns a (speed, radius) tuple
+def fixwheelspeed(vleft, vright):
+    radius = (vleft + vright)*BASE/2
+    velocity = (vleft + vright)/2
+    return(velocity, radius)
+
 
 moveBindings = {
         'i':(1,0),
@@ -156,12 +162,14 @@ if __name__=="__main__":
                 speed = speed * speedBindings[key][0]
                 turn = turn * speedBindings[key][1]
                 count = 0
-
+		
                 print(vels(speed,turn))
+		# make sure the instructions are always visible
                 if (status == 14):
                     print(msg)
                 status = (status + 1) % 15
-            elif key == ' ' or key == 'k' :
+	# brakes
+            elif key == ' ':
                 x = 0
                 th = 0
                 control_speed = 0
@@ -210,13 +218,4 @@ if __name__=="__main__":
         pub.publish(twist)
 
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)
-
-
-
-
-# Takes a desired velocity of the left wheel and right wheel and returns a (speed, radius) tuple
-def fixwheelspeed(vleft, vright):
-    radius = (vleft + vright)*BASE/2
-    velocity = (vleft + vright)/2
-    return(velocity, radius)
 
