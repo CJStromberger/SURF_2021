@@ -37,37 +37,12 @@ class GoForward():
 	    # as long as you haven't ctrl + c keeping doing...
         while not rospy.is_shutdown():
             for i in range(10):
-                speeds = self.fixwheelspeed(0.5, i/10.0)
+                speeds = self.fixwheelspeed(0.5, 0.7)
                 move_cmd.linear.x = speeds[0]
                 move_cmd.angular.z = speeds[1]
 	            # publish the velocity
                 self.cmd_vel.publish(move_cmd)
 	            # wait for 0.1 seconds (10 HZ) and publish again
-                r.sleep()
-                r.sleep()
-                r.sleep()
-                r.sleep()
-                r.sleep()
-                r.sleep()
-                r.sleep()
-                r.sleep()
-                r.sleep()
-
-            for i in range(10,-1,-1):
-                speeds = self.fixwheelspeed(0.5, i/10.0)
-                move_cmd.linear.x = speeds[0]
-                move_cmd.angular.z = speeds[1]
-	            # publish the velocity
-                self.cmd_vel.publish(move_cmd)
-	            # wait for 0.1 seconds (10 HZ) and publish again
-                r.sleep()
-                r.sleep()
-                r.sleep()
-                r.sleep()
-                r.sleep()
-                r.sleep()
-                r.sleep()
-                r.sleep()
                 r.sleep()
                         
         
