@@ -22,21 +22,21 @@ def talker():
     while not rospy.is_shutdown():
 
         # Create the end position (in radians)
-    pan_pos = -1.0
+        pan_pos = -1.0
         tilt_pos = 0.5
         topple_pos = -1.0
 
         # Log the information to /rosout
-    rospy.loginfo(pan_pos)
+        rospy.loginfo(pan_pos)
         rospy.loginfo(tilt_pos)
         rospy.loginfo(topple_pos)
 
     # Finally, publish to a node
-    pan.publish(pan_pos)
+        pan.publish(pan_pos)
         tilt.publish(tilt_pos)
         topple.publish(topple_pos)
 
-    rate.sleep()
+        rate.sleep()
 
 if __name__ == '__main__':
     try:
