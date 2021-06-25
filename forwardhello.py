@@ -57,10 +57,14 @@ class GoForward():
     def fixwheelspeed(self, vleft, vright):
         if vleft == vright:
             return(vleft, 0)
-        else:
+        elif vleft < vright:
             omega = abs(vleft - vright)/BASE
             velocity  = (vleft+vright)/2
             return(velocity, omega)
+        else:
+            omega = abs(vleft - vright)/BASE
+            velocity  = (vleft+vright)/2
+            return(velocity, -omega)
  
 if __name__ == '__main__':
     try:
