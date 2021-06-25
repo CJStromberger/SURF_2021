@@ -58,7 +58,7 @@ class GoForward():
         if vleft == vright:
             return(vleft, 0)
         else:
-            radius = (vleft + vright)*BASE/2
+            radius = 1/((vleft + vright)*BASE/2)
             omega = (vleft + vright)/(radius*2)
             velocity  = radius*omega
             return(velocity, omega)
