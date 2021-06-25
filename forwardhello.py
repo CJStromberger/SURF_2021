@@ -56,7 +56,7 @@ class GoForward():
     # Takes a desired velocity of the left wheel and right wheel and returns a (linear velocity, rortational velocity) tuple
     def fixwheelspeed(self, vleft, vright):
         if vleft == vright:
-            return(vleft, 1)
+            return(vleft, 0)
         else:
             radius = (vleft + vright)*BASE/2
             omega = (vleft + vright)/(radius*2)
