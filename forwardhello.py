@@ -58,9 +58,8 @@ class GoForward():
         if vleft == vright:
             return(vleft, 0)
         else:
-            radius = 1/((vleft + vright)*BASE/2)
-            omega = (vleft + vright)/(radius*2)
-            velocity  = radius*omega
+            omega = abs(vleft - vright)/BASE
+            velocity  = (vleft+vright)/2
             return(velocity, omega)
  
 if __name__ == '__main__':
