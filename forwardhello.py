@@ -69,10 +69,10 @@ class GoForward():
  
 if __name__ == '__main__':
     try:
-	print("sleeping")
-	time.sleep(4)
-	print("going")
-	time.sleep(1)
+        print("sleeping")
+        time.sleep(4)
+        print("going")
+        time.sleep(1)
         GoForward()
     except:
-        rospy.loginfo("GoForward node terminated.") 
+        rospy.loginfo("GoForward node terminated.")
