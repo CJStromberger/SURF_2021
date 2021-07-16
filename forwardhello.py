@@ -6,6 +6,7 @@ import rospy
 from geometry_msgs.msg import Twist
 from std_msgs.msg import String
 import sys, select, termios, tty
+import time
 
 # Length between wheels, 9 inches, 0.2286 meters
 BASE = 0.2286
@@ -37,7 +38,7 @@ class GoForward():
 	    # as long as you haven't ctrl + c keeping doing...
         while not rospy.is_shutdown():
             for i in range(100):
-                speeds = self.fixwheelspeed(.5, .5000001)
+                speeds = self.fixwheelspeed(-.1, -.1)
                 move_cmd.linear.x = speeds[0]
                 move_cmd.angular.z = speeds[1]
 	            # publish the velocity
@@ -68,6 +69,10 @@ class GoForward():
  
 if __name__ == '__main__':
     try:
+	print("sleeping")
+	time.sleep(4)
+	print("going")
+	time.sleep(1)
         GoForward()
     except:
         rospy.loginfo("GoForward node terminated.") 
