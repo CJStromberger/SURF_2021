@@ -10,6 +10,9 @@ GROUP_NAME_ARM = 'arm'
 
 class MoveItDemo:
     def __init__(self):
+        
+        arm = MoveGroupCommander(GROUP_NAME_ARM)
+
         rospy.loginfo("Set Arm: right_up")
         arm.set_named_target('right_up')
         if arm.go() != True:
