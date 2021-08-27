@@ -1,4 +1,4 @@
-#NEAT Files
+# NEAT Files
 
 This file will tell you what each file in this folder is for:
 
