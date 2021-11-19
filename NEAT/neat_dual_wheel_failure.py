@@ -97,9 +97,6 @@ def evaluate(genomes, config):
                 # curr_fitness += abs(distance_min - curr_distance)
                 curr_fitness += 1
                 distance_min = curr_distance
-
-            # if this is the max fintness we have had so far, set the inefficent moves to zero, otherwise incriment
-            if curr_fitness > fitness_max:
                 fitness_max = curr_fitness
                 ineff_moves = 0
             else:
