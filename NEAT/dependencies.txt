@@ -1,0 +1,8 @@
+Dependencies
+Python Packages
+neat
+random
+math
+visualize 
+matplotlib.pyplot
+numpy
