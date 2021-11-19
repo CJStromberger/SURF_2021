@@ -55,6 +55,7 @@ def output_to_move(output, field, moves, tracker_x, tracker_y): # tracker is a l
 """
 Evaluates genomes in a population.
 Sets best_x and best_y if acceptable path is found.
+Writes solution to dual_wheel_failure_solution.txt if one is found
 """
 def evaluate(genomes, config):
     global best_x
