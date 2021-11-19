@@ -1,4 +1,5 @@
 Dependencies
+
 Python Packages
 neat
 random
@@ -6,3 +7,9 @@ math
 visualize 
 matplotlib.pyplot
 numpy
+
+Python Version
+Python 3
+
+OS
+Currently operating on MacOS, might work on other OS.
