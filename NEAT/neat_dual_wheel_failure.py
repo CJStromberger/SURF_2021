@@ -68,7 +68,6 @@ def evaluate(genomes, config):
         net = neat.nn.recurrent.RecurrentNetwork.create(genome, config) # create networks from the genomes
         # f = randomField() # create a random field
         f = Field(turt_x, turt_y, turt_rad, flag_x, flag_y)
-        print(f.distance_from_flag())
 
         #empty lists to track position
         tracker_x = [turt_x]
@@ -109,16 +108,18 @@ def evaluate(genomes, config):
                 # for plotting
                 best_x = tracker_x
                 best_y = tracker_y
-                print(genome_id, curr_fitness, f.distance_from_flag(), moves)
+                solution = open("dual_wheel_failure_solution.txt", "w")
+                solution.write("Movement array:\n" + str(moves) + "\n\nPredicted x positions:\n" + str(best_x) + "\n\nPredicted y positions:\n" + str(best_y))
+                print("Genome attempt " + str(genome_id) + " found a solution with " + str(len(moves)) + " moves.\nDistance remaining to goal: " + str(f.distance_from_flag()))
             # if too many inefficent moves, we are done and genome fails
             elif ineff_moves >= 10: # using 6 is the only time where the robot "knows" what a movement will do to it (i.e. here it knows how far it will turn each time so it can make efficent turns)
                 done = True
-                print(genome_id, curr_fitness, f.distance_from_flag())
             
             genome.fitness = curr_fitness
 
 """
 Start of the actual program
+To run, type exec(open("neat_dual_wheel_failure.py").read()) into terminal
 """
 
 #configure the NEAT network
