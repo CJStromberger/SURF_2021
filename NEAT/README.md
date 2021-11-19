@@ -2,7 +2,7 @@
 
 This file will tell you what each file in this folder is for:
 
-- ``neat_dualwheelfailure.py`` will print out each generation's number, its fitness, and its ending distance from the flag (goal turtlebot aims to reach). On the first (and only) successful generation, it will also print out the generation's path taken to reach the goal, and then it will plot this on a graph. The graph's blue square represents the turtlebot's starting position and the green triangle represents the flag.
+- ``neat_dual_wheel_failure.py`` will print out each generation's number, its fitness, and its ending distance from the flag (goal turtlebot aims to reach). On the first (and only) successful generation, it will also print out the generation's path taken to reach the goal, and then it will plot this on a graph. The graph's blue square represents the turtlebot's starting position and the green triangle represents the flag.
 - ``config-feedforward`` is a text file outlining the parameters of the NEAT algorithm. The biggest thing that I have adjusted is ``fitness_threashold`` and ``pop_size``. To better fine tune the algoirthm, visit [https://readthedocs.org/projects/neat-python/downloads/pdf/latest/](https://readthedocs.org/projects/neat-python/downloads/pdf/latest/) for NEAT documentation.
 - ``field.py`` is a field class which holds the (x,y) position of the turtlebot, its orientation in radians, and the (x,y) position of the flag.
 - ``constants.py`` holds the change in movement from each type of motion in a dual wheel failure (push, pivot CW, pivot CCW). Mostly averaged values taken from 5 OptiTrack runs, with some human manipulation to make more accurate.
